@@ -62,8 +62,6 @@ var _ = {};
           iterator(collection[k], k, collection);
         };
       };
-
-
   };
 
   // Returns the index at which value can be found in the array, or -1 if value
@@ -85,16 +83,35 @@ var _ = {};
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var returnArray = [];
+    for (var i = 0; i < collection.length; i++) {
+      if (test(collection[i])) {
+        returnArray.push(collection[i]);
+      };
+    };
+    return returnArray;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
-    // TIP: see if you can re-use _.filter() here, without simply
-    // copying code in and modifying it
+    var returnArray = [];
+    for (var i = 0; i < collection.length; i++) {
+      if (test(collection[i]) === false) {
+        returnArray.push(collection[i]);
+      };
+    };
+    return returnArray;
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    var returnArray = [];
+    _.each(array,function(value, key, collection){
+      if (_.indexOf(returnArray,value) === -1) {
+        returnArray.push(value);
+      };
+    });
+    return returnArray;
   };
 
 
