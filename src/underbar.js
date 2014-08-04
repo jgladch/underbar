@@ -232,6 +232,26 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    var resultArray = [];
+    var resultSum = 0;
+
+    if (iterator !== undefined) {
+      for (var k in collection) {
+        if (iterator(collection[k])) {
+          resultArray.push(1);
+        } else {
+          resultArray.push(0);
+        };
+      };
+    };
+
+    resultSum = _.reduce(resultArray,function(total,number){return total + number},0);
+
+    if (resultSum > 0) {
+      return true;
+    } else{
+      return false;
+    };
   };
 
 
