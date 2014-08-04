@@ -207,11 +207,14 @@ var _ = {};
   _.every = function(collection, iterator) {
     var resultArray = [];
     var resultSum = 0;
-    for (var k in collection) {
-      if (iterator(collection[k])) {
-        resultArray.push(1);
-      } else {
-        resultArray.push(0);
+
+    if (iterator !== undefined) {
+      for (var k in collection) {
+        if (iterator(collection[k])) {
+          resultArray.push(1);
+        } else {
+          resultArray.push(0);
+        };
       };
     };
 
@@ -222,7 +225,7 @@ var _ = {};
     } else{
       return false;
     };
-    
+
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
