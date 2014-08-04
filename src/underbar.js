@@ -243,6 +243,15 @@ var _ = {};
           resultArray.push(0);
         };
       };
+    } else {
+      var iterator = function(input){return input};
+      for (var k in collection) {
+        if (iterator(collection[k])) {
+          resultArray.push(1);
+        } else {
+          resultArray.push(0);
+        };
+      };
     };
 
     resultSum = _.reduce(resultArray,function(total,number){return total + number},0);
