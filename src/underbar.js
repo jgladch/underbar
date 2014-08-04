@@ -176,8 +176,14 @@ var _ = {};
       result = collection[0];
     };
 
-    for (var i = 0; i < collection.length; i++) {
-      result = iterator(result, collection[i]);
+    if (Array.isArray(collection)) {
+      for (var i = 0; i < collection.length; i++) {
+        result = iterator(result, collection[i]);
+      };
+    } else{
+      for (var k in collection){
+        result = iterator(result, collection[k]);
+      };
     };
 
     return result;
