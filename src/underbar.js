@@ -427,6 +427,27 @@ var _ = {};
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var arr = [];
+    var index = [];
+    var maxIndex;
+
+    for (var k = 0; k < arguments.length; k++) {
+      index.push(arguments[k].length);
+    };
+
+    maxIndex = Math.max.apply(null, index);
+
+    for (var i = 0; i < arguments.length; i++) {
+      for (var j = 0; j < maxIndex; j++) {
+        if (typeof arr[j] === 'undefined') {
+          arr[j] = new Array(arguments[i][j]);
+        } else{
+          arr[j].push(arguments[i][j]);
+        };
+      };
+    };
+
+    return arr;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
